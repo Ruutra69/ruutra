@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <title>79Counter</title>
+  <head>
+    <script>const imageArray = 
+      [
+        "https://live.staticflickr.com/5461/17162789456_16216e9910_o_d.jpg",
+        "https://live.staticflickr.com/6158/6223069770_0b564a68b6_o_d.jpg",
+        "https://previews.dropbox.com/p/thumb/ABdU_b4gb62vT2r4TRergu4-agebbI8xwQ_rjH3b2XN-O0sd9x2FKcq0vAhKhl74P6r3RYbr6sjLZP0Un-Y_Rz-paU7aFzDLmu71r8x4Aaz46JOPaFdvlhzKyUnYSE9X5PnGtXbmNtfA3KJmBQYHcglDjMSrHeX4uDJn-THsj_Hppoa1ZfP2a7X54FU0aNbsSQP0VCT-l90K8pwrcfKgd2QelsCOQF51p_8nTY-HPTx2beAoQnK3WvHK3KySuiRC6yf-FrKutEtUsE2H8JBzw2Fq2GY_dkOzCIHq-q8onAAw6J3nCQBfbPd42eQbfkszkujMKR_vpYIAS1hAlPouIY5qSa21wqOls_taKW0hLqO3kZXHBRsWDRvRxWi76ESa3gst_hpUX5ox-81DuXVmO28Z4n5xVY2EOQyrLA1cCKmLZf8XoOHM0tmAN3cYJn9fYuplPWM4k9-oOV5QM84nGaw9JFF345a1HNZLgu1cSj-AGg/p.jpeg",
+        "https://live.staticflickr.com/2909/13973869847_0ab4419a99_o_d.jpg",
+        "https://live.staticflickr.com/2907/14540681468_505cb2306a_o_d.jpg",
+        "https://live.staticflickr.com/3851/14704349886_e66dda3bdb_o_d.jpg",
+        "https://live.staticflickr.com/3870/14727498565_3214dbf470_o_d.jpg",
+        "https://live.staticflickr.com/8784/17000955848_8fb87a98be_o_d.jpg",
+        "https://live.staticflickr.com/5585/14541065807_021eb67983_o_d.jpg",
+        "https://live.staticflickr.com/5579/13973812419_394684b310_o_d.jpg",
+        "https://live.staticflickr.com/4075/4883514308_59bc921c9e_o_d.jpg",
+        "https://live.staticflickr.com/4103/4993531707_47a2faf50c_o_d.jpg"
+      ];
+
+      const image = document.querySelector("img");
+      const button = document.querySelector("button");
+
+      window.onload = () => generateRandomPicture(imageArray);
+
+      button.addEventListener("click", () => generateRandomPicture(imageArray));
+
+      function generateRandomPicture(array)
+      {
+        let randomNum = Math.floor(Math.random() * array.length); 
+        image.setAttribute("src", array[randomNum]);
+        image.style.width = '1000px';
+        image.style.height = 'auto';
+      }
+    </script>
+    <style>
+        body
+        {
+            /* Full height */
+            height: 150%;
+
+          /* Center and scale the image nicely */
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-image:url("https://i.ibb.co/3zwQbP1/pooboo.jpg");
+        }
+          .countup {
+            position: fixed;
+            left: 2%;
+            bottom: 0px;           
+            margin: auto;
+            width: 100%;
+          }
+          .countup .timeel {
+            display: inline-block;
+            padding: 50px;
+            background: #000000;
+            margin: 0;
+            color: white;
+            min-width: 2.6rem;
+            margin-left: 13px;
+            border-radius: 20px 0 0 20px;
+            font-size: 150%;
+
+          }
+          .countup span[class*="timeRef"] {
+            border-radius: 0 10px 10px 0;
+            margin-left: 0;
+            background: #ffffff;
+          
+            color: black;
+            font-size: 150%;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          }
+          .info{
+            -webkit-text-stroke-width: 1px;
+          -webkit-text-stroke-color: black;
+            background-clip: padding-box;
+            line-height: 200%;
+            text-shadow: 0 10 3px #000000;
+            color: #ffffff;
+            font-size: 400%;
+            text-align: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          }
+          
+        
+      </style>
+  </head>
+  <script>
+    window.onload = function() 
+    {
+      countUpFromTime("Sep 7, 2020 12:00:00", 'countup1'); 
+    };
+
+    function countUpFromTime(countFrom, id) {
+      countFrom = new Date(countFrom).getTime();
+      var now = new Date(),
+          countFrom = new Date(countFrom),
+          timeDifference = (now - countFrom);
+        
+      var secondsInADay = 60 * 60 * 1000 * 24,
+          secondsInAHour = 60 * 60 * 1000;
+        
+      days = Math.floor(timeDifference / (secondsInADay) * 1);
+      hours = Math.floor((timeDifference % (secondsInADay)) / (secondsInAHour) * 1);
+      mins = Math.floor(((timeDifference % (secondsInADay)) % (secondsInAHour)) / (60 * 1000) * 1);
+      secs = Math.floor((((timeDifference % (secondsInADay)) % (secondsInAHour)) % (60 * 1000)) / 1000 * 1);
+    
+      var idEl = document.getElementById(id);
+      idEl.getElementsByClassName('days')[0].innerHTML = days;
+      idEl.getElementsByClassName('hours')[0].innerHTML = hours;
+      idEl.getElementsByClassName('minutes')[0].innerHTML = mins;
+      idEl.getElementsByClassName('seconds')[0].innerHTML = secs;
+    
+      clearTimeout(countUpFromTime.interval);
+      countUpFromTime.interval = setTimeout(function(){ countUpFromTime(countFrom, id); }, 1000);  }
+  </script>
+  <style>
+    body
+    {
+      background-color: black;
+    }
+    .Knop
+    {
+      position: absolute;
+      left: 1010px;
+      top: 5px;
+      font-size: 50px;
+      color: white;
+      background-color: black;
+      text-align: center;
+    }
+  </style>
+  <body>
+      <div class="info">
+        <p -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: black;>
+          Dagen sinds Tedah en Artuur samen zijn:
+        </p>
+      </div>
+
+      <div class="countup" id="countup1">
+          <span class="timeel days">00</span>
+          <span class="timeel timeRefDays">Dagen</span>
+          <span class="timeel hours">00</span>
+          <span class="timeel timeRefHours">Uren</span>
+          <span class="timeel minutes">00</span>
+          <span class="timeel timeRefMinutes">Minuten</span>
+          <span class="timeel seconds">00</span>
+          <span class="timeel timeRefSeconds">Seconden</span>
+      </div>
+    
+
+
+  </body>
+</html>
